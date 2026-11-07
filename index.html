@@ -27,7 +27,7 @@ h1 { margin: 0; }
 .play { position: absolute; left: calc(50% - var(--p) * 62); width: calc(var(--p) * 124); min-height: calc(var(--p) * 28);
   display: flex; align-items: center; justify-content: center; text-decoration: none; color: #fff1d6;
   font: calc(var(--p) * 18) / calc(var(--p) * 18) "Pebble", monospace;
-  border-style: solid; border-color: transparent; border-width: calc(var(--p) * 4); padding: var(--p) 0 0;
+  border-style: solid; border-color: transparent; border-width: calc(var(--p) * 4); padding: 0;
   border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAVUlEQVR42mNkQAJeDhn/GbCAbQdmMMLYjOiKj57d/gZZsbWxpwiyJiZ8ipHFYGoYvRwy/mNTiA1YG3uKMDGQCIaDBkZCwYoeF0zIkQKTwBdxjKQmDQCGzC4Fv/CfIQAAAABJRU5ErkJggg==) 4 fill stretch; }
 .play:hover { color: #ffe08a; border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAVUlEQVR42mNkQAL/r1T+Z8ACGHXaGeFsdMUClsveICv+cDxKBFkTEz7FyGIwNYz/r1T+x6YQG/hwPEqEiYFEMBw0MBIKVvS4YEKOFJgEvohjJDVpAAAPAy9firWFDAAAAABJRU5ErkJggg==) 4 fill stretch; }
 .play:active { color: #c9b8a0; border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAVUlEQVR42mNkQAL/r1T+Z8ACGHXaGeFsdMW6YQffICu+vMpeBFkTEz7FyGIwNYz/r1T+x6YQG7i8yl6EiYFEMBw0MBIKVvS4YEKOFJgEvohjJDVpAAAt8i9fiar3ggAAAABJRU5ErkJggg==) 4 fill stretch; }
@@ -55,14 +55,16 @@ h1 { margin: 0; }
 }
 /* One small line under Play: on a phone, how to keep it as an app; on a computer, where the computer version lives
    (Tate, 7 November 2026: Netlify for the iPhone, itch.io for computers). */
-.note { position: absolute; left: 0; right: 0; margin: 0; text-align: center; color: #fff1d6;
-  font: calc(var(--p) * 8) / calc(var(--p) * 10) "Pebble", monospace; text-shadow: 0 var(--p) 0 #150a26, 0 0 calc(var(--p) * 3) #150a26; }
+.note { position: absolute; left: 0; right: 0; margin: 0; text-align: center; }
+.note span { display: inline-block; max-width: calc(100vw - 32px); color: #fff1d6; background: #150a26e6;
+  border: var(--p) solid #4a2a5a; border-radius: calc(var(--p) * 3); padding: calc(var(--p) * 3) calc(var(--p) * 6);
+  font: calc(var(--p) * 9) / calc(var(--p) * 12) "Pebble", monospace; letter-spacing: calc(var(--p) * .5); }
 .note a { color: #ffd479; text-decoration: none; }
 .note a:hover { color: #ffe08a; }
 .note b { color: #ffd479; font-weight: normal; }
 /* Netlify's "Powered by Netlify" badge: Tate asked for it gone (7 November 2026). */
 #nl-badge-frame { display: none !important; }
-.note { bottom: calc(var(--k) * 27 - var(--p) * 14 - var(--p) * 15); }
+.note { bottom: calc(var(--k) * 27 - var(--p) * 14 - var(--p) * 30); }
 .on-phone { display: none; }
 @media (hover: none) and (pointer: coarse) { .on-phone { display: block; } .on-computer { display: none; } }
 @media (max-aspect-ratio: 13/9) {
@@ -77,8 +79,8 @@ h1 { margin: 0; }
     <img class="art" src="img/logo-wide.png" alt="Heaven Has Stones">
   </picture></h1>
   <a class="play" href="play/">Play</a>
-  <p class="note on-phone">On iPhone: tap <b>Share</b>, then <b>Add to Home Screen</b>, for full screen.</p>
-  <p class="note on-computer">On a computer? <a href="https://stratosstudio.itch.io/heaven-has-stones">Play it on itch.io</a></p>
+  <p class="note on-phone"><span>On iPhone: tap <b>Share</b>, then <b>Add to Home Screen</b>, for full screen.</span></p>
+  <p class="note on-computer"><span>On a computer? <a href="https://stratosstudio.itch.io/heaven-has-stones">Play it on itch.io</a></span></p>
 </main>
 </body>
 </html>
