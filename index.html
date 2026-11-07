@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2a1444">
+<title>Heaven Has Stones</title>
+<meta property="og:title" content="Heaven Has Stones">
+<meta property="og:image" content="https://heavenhasstones.netlify.app/img/share.png">
+<link rel="icon" href="img/icon.png">
+<link rel="preload" href="fonts/Pebble.ttf" as="font" type="font/ttf" crossorigin>
+<style>
+/* One picture and one button. The numbers are art pixels from build_cover.py. Every size is a whole step, so the
+   pixels stay square at any window size: --s is the smallest step this screen can draw. */
+@font-face { font-family: "Pebble"; src: url("fonts/Pebble.ttf") format("truetype"); font-display: block; }
+:root { --s: 1px; --p: 2px; --vh: 1vh; }
+@supports (height: 100dvh) { :root { --vh: 1dvh; } }
+@media (min-resolution: 2dppx) { :root { --s: .5px; } }
+@media (min-resolution: 3dppx) { :root { --s: calc(1px / 3); } }
+@media (min-width: 1280px) and (min-height: 760px) { :root { --p: 3px; } }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: #150a26; overflow: hidden; }
+main { position: fixed; inset: 0; overflow: hidden; }
+h1 { margin: 0; }
+.art { position: absolute; left: 50%; display: block; image-rendering: pixelated; }
+.play { position: absolute; left: calc(50% - var(--p) * 62); width: calc(var(--p) * 124); min-height: calc(var(--p) * 28);
+  display: flex; align-items: center; justify-content: center; text-decoration: none; color: #fff1d6;
+  font: calc(var(--p) * 18) / calc(var(--p) * 18) "Pebble", monospace;
+  border-style: solid; border-color: transparent; border-width: calc(var(--p) * 4); padding: var(--p) 0 0;
+  border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAVUlEQVR42mNkQAJeDhn/GbCAbQdmMMLYjOiKj57d/gZZsbWxpwiyJiZ8ipHFYGoYvRwy/mNTiA1YG3uKMDGQCIaDBkZCwYoeF0zIkQKTwBdxjKQmDQCGzC4Fv/CfIQAAAABJRU5ErkJggg==) 4 fill stretch; }
+.play:hover { color: #ffe08a; border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAVUlEQVR42mNkQAL/r1T+Z8ACGHXaGeFsdMUClsveICv+cDxKBFkTEz7FyGIwNYz/r1T+x6YQG/hwPEqEiYFEMBw0MBIKVvS4YEKOFJgEvohjJDVpAAAPAy9firWFDAAAAABJRU5ErkJggg==) 4 fill stretch; }
+.play:active { color: #c9b8a0; border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAVUlEQVR42mNkQAL/r1T+Z8ACGHXaGeFsdMW6YQffICu+vMpeBFkTEz7FyGIwNYz/r1T+x6YQG7i8yl6EiYFEMBw0MBIKVvS4YEKOFJgEvohjJDVpAAAt8i9fiar3ggAAAABJRU5ErkJggg==) 4 fill stretch; }
+.play:focus-visible { outline: var(--p) solid #ffd479; outline-offset: var(--p); }
+
+/* Wide windows: the pink logo, 320 by 180, filling the window from the bottom up. */
+.art { width: calc(var(--k) * 320); height: calc(var(--k) * 180); margin-left: calc(var(--k) * -160); bottom: 0; }
+.play { bottom: calc(var(--k) * 27 - var(--p) * 14); }
+.art, .play, .note { --k: max(calc(100vw / 320), calc(var(--vh) * 100 / 180)); }
+@supports (width: round(up, 1px, 1px)) {
+  .art, .play, .note { --k: max(round(up, 100vw / 320, var(--s)), round(up, var(--vh) * 100 / 180, var(--s))); }
+}
+
+/* Tall and squarish windows: 460 by 520, centred. The middle 150 by 280 (stone, name, button) fits when it can,
+   and the picture always covers the window. */
+@media (max-aspect-ratio: 13/9) {
+  .art { width: calc(var(--k) * 460); height: calc(var(--k) * 520); margin-left: calc(var(--k) * -230);
+    bottom: auto; top: calc(50% - var(--k) * 260); }
+  .play { bottom: auto; top: calc(50% + var(--k) * 62 - var(--p) * 14); }
+  .art, .play, .note { --k: max(min(calc(100vw / 150), calc(var(--vh) * 100 / 280)), calc(100vw / 460), calc(var(--vh) * 100 / 520)); }
+  @supports (width: round(up, 1px, 1px)) {
+    .art, .play, .note { --k: max(min(round(down, 100vw / 150, var(--s)), round(down, var(--vh) * 100 / 280, var(--s))),
+      round(up, 100vw / 460, var(--s)), round(up, var(--vh) * 100 / 520, var(--s))); }
+  }
+}
+/* One small line under Play: on a phone, how to keep it as an app; on a computer, where the computer version lives
+   (Tate, 7 November 2026: Netlify for the iPhone, itch.io for computers). */
+.note { position: absolute; left: 0; right: 0; margin: 0; text-align: center; color: #fff1d6;
+  font: calc(var(--p) * 8) / calc(var(--p) * 10) "Pebble", monospace; text-shadow: 0 var(--p) 0 #150a26, 0 0 calc(var(--p) * 3) #150a26; }
+.note a { color: #ffd479; text-decoration: none; }
+.note a:hover { color: #ffe08a; }
+.note b { color: #ffd479; font-weight: normal; }
+/* Netlify's "Powered by Netlify" badge: Tate asked for it gone (7 November 2026). */
+#nl-badge-frame { display: none !important; }
+.note { bottom: calc(var(--k) * 27 - var(--p) * 14 - var(--p) * 15); }
+.on-phone { display: none; }
+@media (hover: none) and (pointer: coarse) { .on-phone { display: block; } .on-computer { display: none; } }
+@media (max-aspect-ratio: 13/9) {
+  .note { bottom: auto; top: calc(50% + var(--k) * 62 + var(--p) * 18); }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1><picture>
+    <source media="(max-aspect-ratio: 13/9)" srcset="img/logo-tall.png">
+    <img class="art" src="img/logo-wide.png" alt="Heaven Has Stones">
+  </picture></h1>
+  <a class="play" href="play/">Play</a>
+  <p class="note on-phone">On iPhone: tap <b>Share</b>, then <b>Add to Home Screen</b>, for full screen.</p>
+  <p class="note on-computer">On a computer? <a href="https://stratosstudio.itch.io/heaven-has-stones">Play it on itch.io</a></p>
+</main>
+</body>
+</html>
